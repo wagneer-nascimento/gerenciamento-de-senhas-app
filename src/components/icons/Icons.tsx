@@ -1,12 +1,9 @@
 import React from "react";
-import { useAuth } from "../../auth/auth";
 import {
     IconOcticons,
     IconIonicons,
-    ImageProfile,
-    ContainerImageProfile,
-    PrimeiraLetraDoNome,
     IconAntDesign,
+    IconMaterialCommunityIcons,
 } from "./styles";
 
 interface Props {
@@ -14,9 +11,6 @@ interface Props {
     color: string;
     name?: any;
     focused?: boolean;
-    foto?: string;
-    backgroundCor?: string;
-    nomeUser?: string;
 }
 
 export function IconsIonicons({ color, size, name, focused }: Props) {
@@ -26,44 +20,21 @@ export function IconsIonicons({ color, size, name, focused }: Props) {
 }
 
 export function IconsOcticons({ color, size, name }: Props) {
-    return ( 
+    return (
         <IconOcticons name={name} size={size} color={color} />
     )
 }
 
 export function IconsAntDesigns({ color, size, name }: Props) {
-    return ( 
+    return (
         <IconAntDesign name={name} size={size} color={color} />
     )
 }
 
-export function IconProfile({ color, size, foto, backgroundCor, nomeUser }: Props) {
-
+export function IconsMaterialCommunityIcons({ color, size, name }: Props) {
     return (
-        <>
-            {foto ?
-                <ImageProfile
-                    style={{
-                        width: size,
-                        height: size,
-                        borderColor: color,
-                    }}
-                    source={{ uri: foto }} />
-                :
-                <ContainerImageProfile
-                    style={{
-                        width: size,
-                        height: size,
-                        borderColor: color,
-                        backgroundColor: backgroundCor,
-                    }}
-                >
-                    {nomeUser &&
-                        <PrimeiraLetraDoNome
-                        >{nomeUser.substring(0, 1)}</PrimeiraLetraDoNome>
-                    }
-                </ContainerImageProfile>
-            }
-        </>
+        <IconMaterialCommunityIcons name={name} size={size} color={color} />
     )
 }
+
+

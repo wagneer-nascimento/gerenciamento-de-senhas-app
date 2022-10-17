@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { COLORS, FONTS } from "../../theme";
+import { COLORS, FONTS } from "../../../theme";
 
 export const Container = styled.SafeAreaView`
    flex: 1;
@@ -7,8 +7,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Content = styled.View`
-   flex: 1;
-   padding: 0 20px;
+    margin-top: 20px;
 `;
 
 export const ContainerInput = styled.View`
@@ -23,13 +22,5 @@ export const Label = styled.Text`
 `;
 
 export const ContainerButton = styled.View`
-    padding: 20px;
-`;
-
-export const Title = styled.Text`
-    font-family: ${FONTS.ROBOTO_BOLD};
-    font-size: 20px;
-    color: ${COLORS.GRAY};
-    text-align: center;
     padding: 20px;
 `;

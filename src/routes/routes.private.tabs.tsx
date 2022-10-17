@@ -3,15 +3,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RoutesPrivateNavigationTabParamsList } from '../models/RoutesPrivateNavigationTabParamsList';
 import { COLORS } from '../theme';
 import Person from '../pages/Person';
-import { useAuth } from '../auth/auth';
 import HomeTab from '../pages/Home';
-import { IconsOcticons } from '../components/icons/Icons';
-import AddAccount from '../pages/AddAccount';
+import { IconsAntDesigns, IconsMaterialCommunityIcons, IconsOcticons } from '../components/icons/Icons';
+import GeneratorPassword from '../pages/GeneratorPassword';
 
 const Tab = createBottomTabNavigator<RoutesPrivateNavigationTabParamsList>();
 
 export default function RoutesTab() {
-    const { user } = useAuth();
 
     return (
         <Tab.Navigator
@@ -35,27 +33,30 @@ export default function RoutesTab() {
                 name="HomeTab" component={HomeTab}
             />
 
-         {/**   <Tab.Screen
-                options={{
-                    tabBarLabel: () => { return null },
-                    tabBarIcon: ({ size, color, focused }) => (
-                        <IconsOcticons name="diff-added" size={size} color={color} />
-                    ),
-                }}
-                name="AddAccount" component={AddAccount}
-            />
- */}
-
-            {/**<Tab.Screen
+            <Tab.Screen
                 options={{
                     headerShown: true,
                     title: 'Meu Perfil',
                     headerTitleAlign: 'center',
                     tabBarLabel: () => { return null },
+                    tabBarIcon: ({ size, color, focused }) => (
+                        <IconsMaterialCommunityIcons name="shield-key-outline" focused={focused} size={size} color={color} />
+                    ),
+                }}
+                name="GeneratorPassword" component={GeneratorPassword} />
 
+            <Tab.Screen
+                options={{
+                    headerShown: true,
+                    title: 'Meu Perfil',
+                    headerTitleAlign: 'center',
+                    tabBarLabel: () => { return null },
+                    tabBarIcon: ({ size, color, focused }) => (
+                        <IconsAntDesigns name="user" focused={focused} size={size} color={color} />
+                    ),
                 }}
                 name="Person" component={Person} />
-            */}
+
         </Tab.Navigator>
     )
 }

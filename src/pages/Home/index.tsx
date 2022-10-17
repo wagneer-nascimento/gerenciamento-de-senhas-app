@@ -14,6 +14,8 @@ import messaging from '@react-native-firebase/messaging';
 import { useAuth } from "../../auth/auth";
 import LineComponent from "../../components/LineComponent";
 import { IconsAntDesigns } from "../../components/icons/Icons";
+import { navigationPrivateScreens } from "../../libs/navigation";
+import ButtonFab from "../../components/ButtonFab";
 
 export default function Home() {
     const { user } = useAuth();
@@ -23,6 +25,7 @@ export default function Home() {
     const [loading, setLoading] = useState<boolean>(false);
     const [notData, setNotData] = useState<boolean>(false);
     const [refreshing, setRefreshing] = React.useState(false);
+    const navigation = navigationPrivateScreens();
 
     useEffect(() => {
         //  loadingHistorias();
@@ -124,7 +127,7 @@ export default function Home() {
                 }
                 renderItem={({ item }: { item: any }) => (
                     <ContainerCard>
-                        <Card>
+                        <Card onPress={() => { navigation.navigate("ViewAccount") }}>
                             <Title>Amazon</Title>
                             <Usuario>wagneer.nasc@gmail.com</Usuario>
                         </Card>
@@ -134,11 +137,9 @@ export default function Home() {
                 )}
             />
 
-            <PositionButtonAddAccount>
-                <ContainerButtonAddAccount>
-                    <IconsAntDesigns name="plus"  size={25} color={COLORS.ORANGE}/>
-                </ContainerButtonAddAccount>
-            </PositionButtonAddAccount>
+            <ButtonFab type="ADD" onPress={() => {
+                navigation.navigate("AddAccount")
+            }} />
 
         </Container>
     )
