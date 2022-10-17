@@ -10,12 +10,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 interface User {
     id: string;
     email: string;
-    foto: string;
     nome: string;
-    telefone: string;
     dataCriacao: string;
     dataUltimaAtualizacao: string;
-    backgroundImageCor: string;
 }
 
 interface AuthState {
@@ -25,9 +22,7 @@ interface AuthState {
 
 interface Credentials {
     email: any;
-    foto: any;
     nome: any;
-    backgroundImageCor?: any;
 }
 
 interface AuthContextData {
@@ -61,7 +56,7 @@ function AuthProvider({ children }: any) {
         loadStorageData();
     }, []);
 
-    const signIn = useCallback(async ({ email, nome, foto }: Credentials): Promise<any> => {
+    const signIn = useCallback(async ({ email, nome }: Credentials): Promise<any> => {
         /*        const token = "oaksaokspokasopkakopaskopaksopkaopskaoks";
                 const data: Credentials = {
                     email,

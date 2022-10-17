@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "949661904255",
+    "project_id": "gerenciamento-de-senhas",
+    "storage_bucket": "gerenciamento-de-senhas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949661904255:android:3167e5f3eab5d52e7d7e4a",
+        "android_client_info": {
+          "package_name": "com.gerenciamentodesenhas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949661904255-oaa5141610k0tfmrt5efe2vd5lk74bs8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gerenciamentodesenhas",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "949661904255-d16kj269eqsg59f5lm3dpfklf5cs1fiv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQZeicAz_cvKw2NO3yQXft0xlzLFSp3SM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949661904255-d16kj269eqsg59f5lm3dpfklf5cs1fiv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

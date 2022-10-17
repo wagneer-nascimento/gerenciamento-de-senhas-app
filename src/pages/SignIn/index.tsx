@@ -7,9 +7,9 @@ import { Alert, FlatList, Image, ImageBackground, Platform } from "react-native"
 import { useAuth } from "../../auth/auth";
 import Button from "../../components/Button";
 
-/*if (Platform.OS == "android") {
+if (Platform.OS == "android") {
     GoogleSignin.configure();
-}*/
+}
 
 export default function SignIn() {
     const [index, setIndex] = useState<number>(0);
@@ -26,7 +26,6 @@ export default function SignIn() {
         await signIn({
             email: "joseferreira.nasc@live.com.br",
             nome: "José Ferreira",
-            foto: null,
         }).catch((error) => {
             Alert.alert("Error", error.response.data.message);
 
@@ -36,18 +35,16 @@ export default function SignIn() {
     }
 
     async function loginGoogle() {
-        handleSignIn();
-        return;
+       // handleSignIn();
+        //return;
         setLoading(true);
         try {
             await GoogleSignin.hasPlayServices();
             const { idToken, serverAuthCode, user, scopes } = await GoogleSignin.signIn();
-
+ 
             await signIn({
                 email: user.email,
                 nome: user.name,
-                foto: "",
-                //foto: user.photo,
             }).then((response) => {
 
             }).catch((error) => {
