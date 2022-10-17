@@ -23,11 +23,21 @@ export interface DataProps {
 interface Props {
     onChangeSelected(state: DataProps): void;
     value: string;
+    isMaxQuantidade5?: boolean;
 }
 
-export default function SelectNumberComponent({ value, onChangeSelected }: Props) {
+export default function SelectNumberComponent({ value, isMaxQuantidade5 = false, onChangeSelected }: Props) {
     const [visible, setVisible] = useState<boolean>(false);
     const [nomeSelected, setNomeSelected] = useState<string | undefined>(value);
+    const [dataMaxQuantidade5, setDataMaxQuantidade5] = useState<DataProps[]>(
+        [
+            { id: "1", value: "1" },
+            { id: "2", value: "2" },
+            { id: "3", value: "3" },
+            { id: "4", value: "4" },
+            { id: "5", value: "5" },
+        ])
+
     const [data, setData] = useState<DataProps[]>(
         [
             { id: "1", value: "1" },
@@ -82,7 +92,7 @@ export default function SelectNumberComponent({ value, onChangeSelected }: Props
                         <ContainerContent>
 
                             <FlatList
-                                data={data}
+                                data={isMaxQuantidade5 ? dataMaxQuantidade5 : data}
                                 keyExtractor={(item: DataProps) => item.id}
                                 renderItem={({ item }: { item: DataProps }) => (
                                     <ContentState

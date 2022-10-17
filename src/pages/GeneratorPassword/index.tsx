@@ -5,8 +5,20 @@ import { IconsMaterialCommunityIcons } from "../../components/icons/Icons";
 import LineComponent from "../../components/LineComponent";
 import SelectNumberComponent from "../../components/SelectNumberComponent";
 import { COLORS } from "../../theme";
-
-import { ButtonClickIcon, Container, ContainerBodySwitch, ContainerButtonGeneratorPassword, ContainerHeader, ContainerIcons, ContainerIconSubDirectory, ContainerSelectValueLength, ContainerTextSwith, ContentTextSwith, PasswordGeneratorText, TextInfo } from "./styles";
+import {
+    ButtonClickIcon,
+    Container,
+    ContainerBodySwitch,
+    ContainerButtonGeneratorPassword,
+    ContainerHeader,
+    ContainerIcons,
+    ContainerIconSubDirectory,
+    ContainerSelectValueLength,
+    ContainerTextSwith,
+    ContentTextSwith,
+    PasswordGeneratorText,
+    TextInfo
+} from "./styles";
 
 export default function GeneratorPassword() {
     const [isEnabledMaiusculas, setIsEnabledMaiusculas] = useState<boolean>(false);
@@ -70,11 +82,12 @@ export default function GeneratorPassword() {
                             <ContainerSelectValueLength>
                                 <ContainerIconSubDirectory>
                                     <IconsMaterialCommunityIcons name="subdirectory-arrow-right" size={25} color={COLORS.ORANGE} />
-                                    <TextInfo style={{color: COLORS.GRAY_LIGTH}}>Quantidade:</TextInfo>
+                                    <TextInfo style={{ color: COLORS.GRAY_LIGTH }}>Quantidade:</TextInfo>
                                 </ContainerIconSubDirectory>
                                 <SelectNumberComponent
+                                    isMaxQuantidade5={true}
                                     onChangeSelected={(item) => { setQuantidadeMaiusculas(item.value) }}
-                                    value="2"
+                                    value={quantidadeMaiusculas}
                                 />
                             </ContainerSelectValueLength>
                         }
@@ -95,11 +108,12 @@ export default function GeneratorPassword() {
                             <ContainerSelectValueLength>
                                 <ContainerIconSubDirectory>
                                     <IconsMaterialCommunityIcons name="subdirectory-arrow-right" size={25} color={COLORS.ORANGE} />
-                                    <TextInfo style={{color: COLORS.GRAY_LIGTH}}>Quantidade:</TextInfo>
+                                    <TextInfo style={{ color: COLORS.GRAY_LIGTH }}>Quantidade:</TextInfo>
                                 </ContainerIconSubDirectory>
                                 <SelectNumberComponent
+                                    isMaxQuantidade5={true}
                                     onChangeSelected={(item) => { setQuantidadeDigitos(item.value) }}
-                                    value="2"
+                                    value={quantidadeDigitos}
                                 />
                             </ContainerSelectValueLength>
                         }
@@ -120,11 +134,12 @@ export default function GeneratorPassword() {
                             <ContainerSelectValueLength>
                                 <ContainerIconSubDirectory>
                                     <IconsMaterialCommunityIcons name="subdirectory-arrow-right" size={25} color={COLORS.ORANGE} />
-                                    <TextInfo style={{color: COLORS.GRAY_LIGTH}}>Quantidade:</TextInfo>
+                                    <TextInfo style={{ color: COLORS.GRAY_LIGTH }}>Quantidade:</TextInfo>
                                 </ContainerIconSubDirectory>
                                 <SelectNumberComponent
+                                    isMaxQuantidade5={true}
                                     onChangeSelected={(item) => { setQuantidadeSimbolos(item.value) }}
-                                    value="2"
+                                    value={quantidadeSimbolos}
                                 />
                             </ContainerSelectValueLength>
                         }
