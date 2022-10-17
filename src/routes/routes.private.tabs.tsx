@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RoutesPrivateNavigationTabParamsList } from '../models/RoutesPrivateNavigationTabParamsList';
-import { COLORS } from '../theme';
+import { COLORS, FONTS } from '../theme';
 import Person from '../pages/Person';
 import HomeTab from '../pages/Home';
 import { IconsAntDesigns, IconsMaterialCommunityIcons, IconsOcticons } from '../components/icons/Icons';
@@ -36,8 +36,13 @@ export default function RoutesTab() {
             <Tab.Screen
                 options={{
                     headerShown: true,
-                    title: 'Meu Perfil',
+                    title: 'Gerador de Senhas',
                     headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        fontFamily: FONTS.ROBOTO_BOLD,
+                        fontSize: 18,
+                        color: COLORS.GRAY
+                    },
                     tabBarLabel: () => { return null },
                     tabBarIcon: ({ size, color, focused }) => (
                         <IconsMaterialCommunityIcons name="shield-key-outline" focused={focused} size={size} color={color} />
@@ -50,6 +55,11 @@ export default function RoutesTab() {
                     headerShown: true,
                     title: 'Meu Perfil',
                     headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        fontFamily: FONTS.ROBOTO_BOLD,
+                        fontSize: 18,
+                        color: COLORS.GRAY
+                    },
                     tabBarLabel: () => { return null },
                     tabBarIcon: ({ size, color, focused }) => (
                         <IconsAntDesigns name="user" focused={focused} size={size} color={color} />
