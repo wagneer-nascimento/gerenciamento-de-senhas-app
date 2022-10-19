@@ -6,6 +6,7 @@ import React, {
     useEffect,
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { autenticacao } from '../services/auth';
 
 interface User {
     id: string;
@@ -42,8 +43,8 @@ function AuthProvider({ children }: any) {
 
         async function loadStorageData(): Promise<void> {
             const [token, user] = await AsyncStorage.multiGet([
-                '@BibliotecaHumana:token',
-                '@BibliotecaHumana:user',
+                '@GerenciamentoDeSenhas:token',
+                '@GerenciamentoDeSenhas:user',
             ]);
 
             if (token[1] && user[1]) {
@@ -57,33 +58,19 @@ function AuthProvider({ children }: any) {
     }, []);
 
     const signIn = useCallback(async ({ email, nome }: Credentials): Promise<any> => {
-        /*        const token = "oaksaokspokasopkakopaskopaksopkaopskaoks";
-                const data: Credentials = {
-                    email,
-                    nome,
-                    foto,
-                    backgroundImageCor: backgroundCor,
-                };
-        
-                const response = await autenticacao(data);
-                const user: User = response.data;
-        
-                await AsyncStorage.multiSet([
-                    ['@BibliotecaHumana:token', token],
-                    ['@BibliotecaHumana:user', JSON.stringify(user)],
-                ]);*/
+        const token = "oaksaokspokasopkakopaskopaksopkaopskaoks";
+        const data: Credentials = {
+            email,
+            nome,
+        };
 
-        const token = "aospakspkas";
-        const user = {
-            id: "string;",
-            email: "string;",
-            foto: "string;",
-            nome: "string;",
-            telefone: "string;",
-            dataCriacao: "string;",
-            dataUltimaAtualizacao: "string;",
-            backgroundImageCor: "string;"
-        }
+        const response = await autenticacao(data);
+        const user: User = response.data;
+
+        await AsyncStorage.multiSet([
+            ['@GerenciamentoDeSenhas:token', token],
+            ['@GerenciamentoDeSenhas:user', JSON.stringify(user)],
+        ]);
 
         setData({ token, user, });
         return { token, user }
@@ -91,7 +78,7 @@ function AuthProvider({ children }: any) {
     }, []);
 
     const signOut = useCallback(async () => {
-        await AsyncStorage.multiRemove(['@BibliotecaHumana:user', '@BibliotecaHumana:token']);
+        await AsyncStorage.multiRemove(['@GerenciamentoDeSenhas:user', '@GerenciamentoDeSenhas:token']);
 
         setData({} as AuthState);
     }, []);

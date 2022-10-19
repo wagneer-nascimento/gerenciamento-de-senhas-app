@@ -1,38 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, FlatList, Platform, RefreshControl, Text, View } from "react-native";
-//import Card from "../../components/Card";
-import Input from "../../components/Input";
-//import InputCommentComponent from "../../components/InputCommentComponent";
-//import TopAuthors from "../../components/TopAuthors";
-//import { navigationPrivateScreens } from "../../libs/navigation";
-//import { Historia } from "../../models/Historias";
-//import { listarTodasHistorias, listarTodasHistoriasByTitleDescricao } from "../../services/historias/historia";
-import { COLORS } from "../../theme";
+import { useAuth } from "../../../auth/auth";
+import Input from "../../../components/Input";
+import LineComponent from "../../../components/LineComponent";
+import { navigationPrivateScreens } from "../../../libs/navigation";
+import { Account } from "../../../models/Account";
+import { listarTodasContasByUserTitleOrDescription } from "../../../services/account";
+import { COLORS } from "../../../theme";
 import { Container, Content, ContainerTopAuthors, Title, ContainerTitle, ContainerCard, Card, ContainerInput, Usuario, ContainerButtonAddAccount, PositionButtonAddAccount } from "./styles";
 
-//import { updateTokens } from "../../services/tokens/tokens";
-import { useAuth } from "../../auth/auth";
-import LineComponent from "../../components/LineComponent";
-import { IconsAntDesigns } from "../../components/icons/Icons";
-import { navigationPrivateScreens } from "../../libs/navigation";
-import ButtonFab from "../../components/ButtonFab";
-import { Account } from "../../models/Account";
-import { listarTodasContas } from "../../services/account";
-
-export default function Home() {
+export default function SearchByTitleOrDescription() {
     const { user } = useAuth();
-    // const navigation = navigationPrivateScreens();
     const [data, setData] = useState<Account[]>([]);
     const [page, setPage] = useState<number>(1);
+    const [searchAccount, setSearchAccount] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [notData, setNotData] = useState<boolean>(false);
-    const [refreshing, setRefreshing] = React.useState(false);
     const navigation = navigationPrivateScreens();
 
     useEffect(() => {
-        loadingAccounts();
-
-    }, []);
+        setNotData(false);
+        setPage(1);
+        if (!searchAccount) {
+            setData([]);
+        }
+    }, [searchAccount]);
 
     async function loadingAccounts() {
         if (notData) {
@@ -43,7 +35,7 @@ export default function Home() {
 
         try {
 
-            const response = await listarTodasContas(user.id, page);
+            const response = await listarTodasContasByUserTitleOrDescription(user.id, searchAccount, page);
 
             if (Object.keys(response.data).length !== 0) {
                 setData(data.concat(response.data));
@@ -53,6 +45,7 @@ export default function Home() {
             }
 
         } catch (error: any) {
+            console.log(error)
             Alert.alert("Error", error.response.data.message)
 
         } finally {
@@ -60,23 +53,17 @@ export default function Home() {
         }
     }
 
-    function onRefresh() {
-        setRefreshing(true);
-        setTimeout(() => {
-            setRefreshing(false)
-        }, 2000);
-    }
-
-
     return (
         <Container>
 
             <ContainerInput>
                 <Input
+                    value={searchAccount}
+                    onChangeText={setSearchAccount}
                     placeholder="pesquisar"
-                    editable={false}
-                    onTouchStart={() => navigation.navigate("SearchByTitleOrDescription")}
-                    name="" />
+                    returnKeyType="send"
+                    onSubmitEditing={() => { loadingAccounts() }}
+                    name="searchAccount" />
             </ContainerInput>
 
             <FlatList
@@ -84,13 +71,6 @@ export default function Home() {
                 keyExtractor={(item: Account) => item.id}
                 onEndReached={loadingAccounts}
                 onEndReachedThreshold={0.1}
-                refreshControl={
-                 <RefreshControl
-                       tintColor={COLORS.ORANGE}
-                       refreshing={refreshing}
-                       onRefresh={onRefresh}
-                   />
-               }
                 ListFooterComponent={
                     <View style={{ marginBottom: 140 }}>
                         {loading && <ActivityIndicator size="large" color={COLORS.ORANGE} />}
@@ -106,11 +86,6 @@ export default function Home() {
                     </ContainerCard>
                 )}
             />
-
-            <ButtonFab type="ADD" onPress={() => {
-                navigation.navigate("AddAccount")
-            }} />
-
         </Container>
     )
 }

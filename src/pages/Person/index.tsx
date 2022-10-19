@@ -13,13 +13,9 @@ import {
 } from "./styles";
 
 export default function Person() {
-    //const { signOut, user } = useAuth();
+    const { signOut, user } = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
-
-    const user = {
-        nome: "Wagner Nascimento",
-        email: "wagneer.nasc@gmail.com"
-    }
+ 
 
     return (
         <ScrollView style={{
@@ -44,7 +40,7 @@ export default function Person() {
 
                     <ContainerButton>
                         <Button
-                            // onPress={() => signOut()}
+                            onPress={() => signOut()}
                             backgroundCor="WHITE"
                             textCor="ORANGE">Sair</Button>
                     </ContainerButton>

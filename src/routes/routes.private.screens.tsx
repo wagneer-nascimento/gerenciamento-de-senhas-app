@@ -5,6 +5,7 @@ import RoutesTab from "./routes.private.tabs";
 import AddAccount from "../pages/Account/AddAccount";
 import { COLORS, FONTS } from "../theme";
 import ViewAccount from "../pages/Account/ViewAccount";
+import SearchByTitleOrDescription from "../pages/Account/SearchByTitleOrDescription";
 
 const Private = createNativeStackNavigator<RoutesPrivateNavigationBetwensScreensParamsList>();
 
@@ -50,6 +51,21 @@ export default function RoutesPrivateScreens() {
                     }
                 }}
                 name="ViewAccount" component={ViewAccount}
+            />
+
+            <Private.Screen
+                options={{
+                    headerShown: true,
+                    title: "Consultar Conta",
+                    headerBackTitleVisible: false,
+                    headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        fontFamily: FONTS.ROBOTO_BOLD,
+                        fontSize: 18,
+                        color: COLORS.GRAY
+                    }
+                }}
+                name="SearchByTitleOrDescription" component={SearchByTitleOrDescription}
             />
 
         </Private.Navigator>

@@ -6,6 +6,7 @@ import { Container, ContainerButton, Title, BackgroundColor, SubTitle, Content, 
 import { Alert, FlatList, Image, ImageBackground, Platform } from "react-native";
 import { useAuth } from "../../auth/auth";
 import Button from "../../components/Button";
+import api from "../../services/api";
 
 if (Platform.OS == "android") {
     GoogleSignin.configure();
@@ -35,8 +36,6 @@ export default function SignIn() {
     }
 
     async function loginGoogle() {
-       // handleSignIn();
-        //return;
         setLoading(true);
         try {
             await GoogleSignin.hasPlayServices();
@@ -48,6 +47,7 @@ export default function SignIn() {
             }).then((response) => {
 
             }).catch((error) => {
+                console.log(error)
                 Alert.alert("error!", "entre em contato com o suporte.")
             })
 

@@ -24,3 +24,9 @@ export const Label = styled.Text`
 export const ContainerButton = styled.View`
     padding: 20px;
 `;
+
+export const PositionButtonRemoveAccount = styled.View`
+    position: absolute;
+    left: 81%; 
+    bottom: 22%;
+`;
