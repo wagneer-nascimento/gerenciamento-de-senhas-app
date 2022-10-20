@@ -22,6 +22,7 @@ export default function AddAccount() {
     const [senha, setSenha] = useState<string>("");
     const [descricao, setDescricao] = useState<string>("");
     const [url, setUrl] = useState<string>("");
+    const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true);
 
     async function handleAddAcount() {
         setLoading(true);
@@ -84,6 +85,9 @@ export default function AddAccount() {
                     <ContainerInput>
                         <Label>Senha</Label>
                         <Input
+                            enableIconPassword={true}
+                            onClickIconPassword={() => setSecureTextEntry(!secureTextEntry)}
+                            secureTextEntry={secureTextEntry}
                             value={senha}
                             onChangeText={setSenha}
                             name="senha" />
