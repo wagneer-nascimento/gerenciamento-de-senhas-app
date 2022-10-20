@@ -44,7 +44,7 @@ export default function AddAccount() {
             Alert.alert("Sucesso", "Conta criada com sucesso!")
             cleanFields();
         } catch (error: any) {
-            Alert.alert("Error", error.response.data.message)
+            Alert.alert("Error", error.response.data.message);
 
         } finally {
             setLoading(false);

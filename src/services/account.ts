@@ -1,4 +1,5 @@
 import { Account } from '../models/Account';
+import { GeneratorSecurePassword } from '../models/GeneratorPassword';
 import api from './api';
 
 export function addAccount(data: Account) {
@@ -25,3 +26,8 @@ export function listarTodasContasByUserTitleOrDescription(idUsuario: string, fil
     const response = api.get(`/contas?idUsuario=${idUsuario}&filtro=${filtro}&page=${page}`);
     return response;
 }
+
+export function  generatorPassword(data: GeneratorSecurePassword){
+    const response = api.post(`/geracao-de-senhas`, data);
+    return response;
+}       

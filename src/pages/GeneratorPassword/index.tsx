@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Switch, ScrollView } from "react-native";
+import { Switch, ScrollView, Alert } from "react-native";
 import Button from "../../components/Button";
 import { IconsMaterialCommunityIcons } from "../../components/icons/Icons";
 import LineComponent from "../../components/LineComponent";
 import SelectNumberComponent from "../../components/SelectNumberComponent";
+import { GeneratorSecurePassword } from "../../models/GeneratorPassword";
+import { generatorPassword } from "../../services/account";
 import { COLORS } from "../../theme";
 import {
     ButtonClickIcon,
@@ -24,16 +26,48 @@ export default function GeneratorPassword() {
     const [isEnabledMaiusculas, setIsEnabledMaiusculas] = useState<boolean>(false);
     const [isEnabledDigitos, setIsEnabledDigitos] = useState<boolean>(false);
     const [isEnabledSimbolos, setIsEnabledSimbolos] = useState<boolean>(false);
-    const [quantidadeMaiusculas, setQuantidadeMaiusculas] = useState<string>("2");
-    const [quantidadeDigitos, setQuantidadeDigitos] = useState<string>("2");
-    const [quantidadeSimbolos, setQuantidadeSimbolos] = useState<string>("2");
+    const [quantidadeMaiusculas, setQuantidadeMaiusculas] = useState<any>("2");
+    const [quantidadeDigitos, setQuantidadeDigitos] = useState<any>("2");
+    const [quantidadeSimbolos, setQuantidadeSimbolos] = useState<any>("2");
+
+    const [quantidadeCaracteres, setQuantidadeCaracteres] = useState<any>("5");
+    const [isEnableCaracteres, setIsEnableCaracteres] = useState<boolean>(true);
+
+    const [senhaGerada, setSenhaGerada] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
+
+    async function handleGeneratorPassword() {
+        setLoading(true);
+
+        try {
+            const data: GeneratorSecurePassword = {
+                digitos: isEnabledDigitos,
+                maiusculas: isEnabledMaiusculas,
+                quantidadeDigitos,
+                quantidadeMaiusculas,
+                quantidadeSimbolos,
+                simbolos: isEnabledSimbolos,
+                caracteres: isEnableCaracteres,
+                quantidadeCaracteres,
+            }
+
+            const response = await generatorPassword(data);
+            setSenhaGerada(response.data.senhaGerada)
+            console.log(response.data)
+        } catch (error: any) {
+            Alert.alert("Error", error.response.data.message);
+
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <Container>
             <ScrollView>
                 <ContainerHeader>
                     <ContainerIcons>
-                        <ButtonClickIcon>
+                        <ButtonClickIcon onPress={() => { handleGeneratorPassword() }}>
                             <IconsMaterialCommunityIcons name="sync" size={25} color={COLORS.ORANGE} />
                         </ButtonClickIcon>
 
@@ -42,23 +76,8 @@ export default function GeneratorPassword() {
                         </ButtonClickIcon>
                     </ContainerIcons>
 
-                    <PasswordGeneratorText>apskOAkspaksoakSAoskpaksoaSAOkapskapok2312312@@@@@@@1920</PasswordGeneratorText>
+                    <PasswordGeneratorText>{senhaGerada}</PasswordGeneratorText>
                 </ContainerHeader>
-                <LineComponent />
-
-                <ContainerSelectValueLength style={{
-                    marginBottom: 15,
-                    marginTop: 15,
-                    marginLeft: 20,
-                    marginRight: 20,
-                }}>
-                    <TextInfo>Tamanho:</TextInfo>
-                    <SelectNumberComponent
-                        onChangeSelected={() => { }}
-                        value="20"
-                    />
-                </ContainerSelectValueLength>
-
                 <LineComponent />
 
                 <ContainerBodySwitch>
@@ -66,6 +85,31 @@ export default function GeneratorPassword() {
                         style={{ fontSize: 20, color: COLORS.ORANGE, marginBottom: 10 }}>
                         Incluir
                     </TextInfo>
+
+                    <ContainerTextSwith>
+                        <ContentTextSwith>
+                            <TextInfo>Caracteres</TextInfo>
+                            <Switch
+                                trackColor={{ false: COLORS.GRAY_LIGTH, true: COLORS.ORANGE_LIGTH }}
+                                thumbColor={isEnableCaracteres ? COLORS.ORANGE : COLORS.WHITE_OFF}
+                                ios_backgroundColor={COLORS.GRAY_LIGTH}
+                                onValueChange={() => setIsEnableCaracteres(previousState => !previousState)}
+                                value={isEnableCaracteres}
+                            />
+                        </ContentTextSwith>
+                        {isEnableCaracteres &&
+                            <ContainerSelectValueLength>
+                                <ContainerIconSubDirectory>
+                                    <IconsMaterialCommunityIcons name="subdirectory-arrow-right" size={25} color={COLORS.ORANGE} />
+                                    <TextInfo style={{ color: COLORS.GRAY_LIGTH }}>Quantidade:</TextInfo>
+                                </ContainerIconSubDirectory>
+                                <SelectNumberComponent
+                                    onChangeSelected={(item) => { setQuantidadeCaracteres(item.value) }}
+                                    value={quantidadeCaracteres}
+                                />
+                            </ContainerSelectValueLength>
+                        }
+                    </ContainerTextSwith>
 
                     <ContainerTextSwith>
                         <ContentTextSwith>
@@ -149,7 +193,10 @@ export default function GeneratorPassword() {
                 <LineComponent />
 
                 <ContainerButtonGeneratorPassword>
-                    <Button>GERAR SENHA</Button>
+                    <Button
+                        loading={loading}
+                        onPress={() => { handleGeneratorPassword() }}
+                    >GERAR SENHA</Button>
                 </ContainerButtonGeneratorPassword>
             </ScrollView>
         </Container>
