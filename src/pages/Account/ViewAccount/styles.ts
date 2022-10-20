@@ -14,6 +14,19 @@ export const ContainerInput = styled.View`
    padding: 10px;
 `;
 
+export const ContainerInputIcon = styled.View`
+   flex-direction: row;
+   align-items: flex-end;
+   justify-content: space-between;
+   padding: 10px;
+`;
+
+export const ButtonClickIcon = styled.TouchableOpacity`
+    height: 40px;
+    width: 40px;
+    align-items: flex-end;
+`;
+
 export const Label = styled.Text`
     font-family: ${FONTS.ROBOTO_BOLD};
     font-size: 16px;

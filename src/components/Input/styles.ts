@@ -10,6 +10,9 @@ export const Container = styled.View`
     justify-content: center;
     border-width: 1px;
     border-color: ${COLORS.WHITE_OFF};
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const TextInput = styled.TextInput`
@@ -17,4 +20,11 @@ export const TextInput = styled.TextInput`
     color:${COLORS.GRAY};
     font-size: 15px; 
     font-family: ${FONTS.POPPINS_REGULAR};
+`;
+
+export const ButtonClickIcon = styled.TouchableOpacity`
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
 `;

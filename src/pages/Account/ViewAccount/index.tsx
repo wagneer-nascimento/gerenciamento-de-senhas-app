@@ -3,15 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
 import Button from "../../../components/Button";
 import ButtonFab from "../../../components/ButtonFab";
+import { IconsMaterialCommunityIcons } from "../../../components/icons/Icons";
 import Input from "../../../components/Input";
 import { iSempty } from "../../../libs/functions";
 import { navigationPrivateScreens } from "../../../libs/navigation";
 import { Account } from "../../../models/Account";
 import { deleteAccount, editAccount } from "../../../services/account";
+import { COLORS } from "../../../theme";
 import {
+    ButtonClickIcon,
     Container,
     ContainerButton,
     ContainerInput,
+    ContainerInputIcon,
     Content,
     Label,
     PositionButtonRemoveAccount
@@ -28,6 +32,7 @@ export default function ViewAccount() {
     const [descricao, setDescricao] = useState<string>("");
     const [url, setUrl] = useState<string>("");
     const [id, setId] = useState<string>("");
+    const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true);
 
     useEffect(() => {
         async function loadingAccount() {
@@ -122,24 +127,40 @@ export default function ViewAccount() {
                             editable={editFields}
                             name="titulo" />
                     </ContainerInput>
+                    <ContainerInputIcon>
+                        <View style={{
+                            flex: 1,
+                        }}>
+                            <Label>Login / Usuário</Label>
+                            <Input
+                                value={login}
+                                onChangeText={setLogin}
+                                editable={editFields}
+                                name="login" />
+                        </View>
+                        <ButtonClickIcon>
+                            <IconsMaterialCommunityIcons name="content-copy" size={28} color={COLORS.ORANGE} />
+                        </ButtonClickIcon>
+                    </ContainerInputIcon>
 
-                    <ContainerInput>
-                        <Label>Login / Usuário</Label>
-                        <Input
-                            value={login}
-                            onChangeText={setLogin}
-                            editable={editFields}
-                            name="login" />
-                    </ContainerInput>
-
-                    <ContainerInput>
-                        <Label>Senha</Label>
-                        <Input
-                            value={senha}
-                            onChangeText={setSenha}
-                            editable={editFields}
-                            name="senha" />
-                    </ContainerInput>
+                    <ContainerInputIcon>
+                        <View style={{
+                            flex: 1,
+                        }}>
+                            <Label>Senha</Label>
+                            <Input
+                                enableIconPassword={true}
+                                onClickIconPassword={() =>  setSecureTextEntry(!secureTextEntry)}
+                                secureTextEntry={secureTextEntry}
+                                value={senha}
+                                onChangeText={setSenha}
+                                editable={editFields}
+                                name="senha" />
+                        </View>
+                        <ButtonClickIcon>
+                            <IconsMaterialCommunityIcons name="content-copy" size={28} color={COLORS.ORANGE} />
+                        </ButtonClickIcon>
+                    </ContainerInputIcon>
 
                     <ContainerInput>
                         <Label>Url do site ou Nome do aplicativo</Label>
