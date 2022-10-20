@@ -5,7 +5,7 @@ import Button from "../../../components/Button";
 import ButtonFab from "../../../components/ButtonFab";
 import { IconsMaterialCommunityIcons } from "../../../components/icons/Icons";
 import Input from "../../../components/Input";
-import { iSempty } from "../../../libs/functions";
+import { copyToClipboard, iSempty } from "../../../libs/functions";
 import { navigationPrivateScreens } from "../../../libs/navigation";
 import { Account } from "../../../models/Account";
 import { deleteAccount, editAccount } from "../../../services/account";
@@ -138,7 +138,9 @@ export default function ViewAccount() {
                                 editable={editFields}
                                 name="login" />
                         </View>
-                        <ButtonClickIcon>
+                        <ButtonClickIcon onPress={() => {
+                            copyToClipboard(login)
+                        }}>
                             <IconsMaterialCommunityIcons name="content-copy" size={28} color={COLORS.ORANGE} />
                         </ButtonClickIcon>
                     </ContainerInputIcon>
@@ -150,14 +152,16 @@ export default function ViewAccount() {
                             <Label>Senha</Label>
                             <Input
                                 enableIconPassword={true}
-                                onClickIconPassword={() =>  setSecureTextEntry(!secureTextEntry)}
+                                onClickIconPassword={() => setSecureTextEntry(!secureTextEntry)}
                                 secureTextEntry={secureTextEntry}
                                 value={senha}
                                 onChangeText={setSenha}
                                 editable={editFields}
                                 name="senha" />
                         </View>
-                        <ButtonClickIcon>
+                        <ButtonClickIcon onPress={() => {
+                            copyToClipboard(senha)
+                        }}>
                             <IconsMaterialCommunityIcons name="content-copy" size={28} color={COLORS.ORANGE} />
                         </ButtonClickIcon>
                     </ContainerInputIcon>

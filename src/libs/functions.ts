@@ -1,4 +1,5 @@
 import { Linking } from "react-native";
+import Clipboard from '@react-native-clipboard/clipboard';
 
 /**
  * 
@@ -42,4 +43,19 @@ export function iSempty(value: string): boolean {
     return empty;
 }
 
- 
+/**
+ * 
+ * @param text 
+ */
+export async function copyToClipboard(text: string) {
+    Clipboard.setString(text);
+}
+
+/**
+ * 
+ * @returns 
+ */
+export async function fetchCopiedText() {
+    const text = await Clipboard.getString();
+    return text;
+}
