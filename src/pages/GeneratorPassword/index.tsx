@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import { IconsMaterialCommunityIcons } from "../../components/icons/Icons";
 import LineComponent from "../../components/LineComponent";
 import SelectNumberComponent from "../../components/SelectNumberComponent";
+import { copyToClipboard } from "../../libs/functions";
 import { GeneratorSecurePassword } from "../../models/GeneratorPassword";
 import { generatorPassword } from "../../services/account";
 import { COLORS } from "../../theme";
@@ -71,7 +72,7 @@ export default function GeneratorPassword() {
                             <IconsMaterialCommunityIcons name="sync" size={25} color={COLORS.ORANGE} />
                         </ButtonClickIcon>
 
-                        <ButtonClickIcon>
+                        <ButtonClickIcon onPress={() => { copyToClipboard(senhaGerada) }}>
                             <IconsMaterialCommunityIcons name="content-copy" size={25} color={COLORS.ORANGE} />
                         </ButtonClickIcon>
                     </ContainerIcons>
