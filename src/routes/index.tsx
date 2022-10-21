@@ -5,11 +5,11 @@ import RoutesNoPrivate from './routes.no.private';
 import RoutesPrivate from './routes.private.screens';
 
 const Routes: React.FC = () => {
-   const { user } = useAuth();
+  const { user } = useAuth();
 
-  // useEffect(() => {
-  // SplashScreen.hide();
-  //}, []);
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return user ? <RoutesPrivate /> : <RoutesNoPrivate />;
 }

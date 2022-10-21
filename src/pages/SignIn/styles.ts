@@ -25,7 +25,7 @@ export const ContainerButton = styled.View`
 
 export const Title = styled.Text`
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: ${COLORS.ORANGE};
     font-family: ${FONTS.POPPINS_BOLD};
     text-align: center;

@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import cadeado from "../../assets/cadeado.jpeg";
+import cadeado from "../../assets/logo.png";
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin, statusCodes, User, } from '@react-native-google-signin/google-signin';
 import { Container, ContainerButton, Title, BackgroundColor, SubTitle, Content, ContainerData, ContainerIndex, Index, BackgroundIndex } from "./styles";
-import { Alert, FlatList, Image, ImageBackground, Platform } from "react-native";
+import { Alert, ImageBackground, Platform } from "react-native";
 import { useAuth } from "../../auth/auth";
 import Button from "../../components/Button";
-import api from "../../services/api";
 
 if (Platform.OS == "android") {
     GoogleSignin.configure();
@@ -40,7 +39,7 @@ export default function SignIn() {
         try {
             await GoogleSignin.hasPlayServices();
             const { idToken, serverAuthCode, user, scopes } = await GoogleSignin.signIn();
- 
+
             await signIn({
                 email: user.email,
                 nome: user.name,
