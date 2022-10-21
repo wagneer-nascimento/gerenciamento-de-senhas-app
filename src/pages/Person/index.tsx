@@ -3,6 +3,7 @@ import { ActivityIndicator, Alert, ScrollView } from "react-native";
 import { useAuth } from "../../auth/auth";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { deleteUser } from "../../services/user";
 import { COLORS } from "../../theme";
 import {
     Container,
@@ -15,7 +16,41 @@ import {
 export default function Person() {
     const { signOut, user } = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
- 
+
+    function confirmDelete() {
+        Alert.alert(
+            "Exclusão da sua conta !",
+            "Clique em confirmar para excluir essa conta.",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => { },
+                    style: "cancel"
+                },
+                {
+                    text: "Confirmar",
+                    onPress: () => handleDeleteUser(),
+                    style: "destructive"
+                }
+            ]
+        );
+    }
+
+    async function handleDeleteUser() {
+        setLoading(true);
+
+        try {
+
+            const response = await deleteUser(user.id);
+            Alert.alert("Sucesso", "Conta excluída com sucesso.");
+            signOut();
+        } catch (error: any) {
+            Alert.alert("Error", error.response.data.message);
+
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <ScrollView style={{
@@ -47,7 +82,7 @@ export default function Person() {
 
                     <ContainerButton>
                         <Button
-                            // onPress={() => signOut()}
+                            onPress={() => confirmDelete()}
                             backgroundCor="WHITE"
                             textCor="ORANGE">EXCLUIR MINHA CONTA</Button>
                     </ContainerButton>
