@@ -8,7 +8,7 @@ import Input from "../../components/Input";
 //import { Historia } from "../../models/Historias";
 //import { listarTodasHistorias, listarTodasHistoriasByTitleDescricao } from "../../services/historias/historia";
 import { COLORS } from "../../theme";
-import { Container, Content, ContainerTopAuthors, Title, ContainerTitle, ContainerCard, Card, ContainerInput, Usuario, ContainerButtonAddAccount, PositionButtonAddAccount } from "./styles";
+import { Container, Content, ContainerTopAuthors, Title, ContainerTitle, ContainerCard, Card, ContainerInput, Usuario, ContainerButtonAddAccount, PositionButtonAddAccount, ButtonInput } from "./styles";
 
 //import { updateTokens } from "../../services/tokens/tokens";
 import { useAuth } from "../../auth/auth";
@@ -72,11 +72,13 @@ export default function Home() {
         <Container>
 
             <ContainerInput>
-                <Input
-                    placeholder="pesquisar"
-                    editable={false}
-                    onTouchStart={() => navigation.navigate("SearchByTitleOrDescription")}
-                    name="" />
+                <ButtonInput onPress={() => navigation.navigate("SearchByTitleOrDescription")}>
+                    <Input
+                        placeholder="pesquisar"
+                        editable={false}
+                       // onTouchStart={() => navigation.navigate("SearchByTitleOrDescription")}
+                        name="" />
+                </ButtonInput>
             </ContainerInput>
 
             <FlatList
@@ -85,12 +87,12 @@ export default function Home() {
                 onEndReached={loadingAccounts}
                 onEndReachedThreshold={0.1}
                 refreshControl={
-                 <RefreshControl
-                       tintColor={COLORS.ORANGE}
-                       refreshing={refreshing}
-                       onRefresh={onRefresh}
-                   />
-               }
+                    <RefreshControl
+                        tintColor={COLORS.ORANGE}
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }
                 ListFooterComponent={
                     <View style={{ marginBottom: 140 }}>
                         {loading && <ActivityIndicator size="large" color={COLORS.ORANGE} />}

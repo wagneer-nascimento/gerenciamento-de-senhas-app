@@ -14,6 +14,9 @@ export const ContainerInput = styled.View`
    padding: 20px;
 `;
 
+export const ButtonInput = styled.TouchableHighlight`
+`;
+
 export const ContainerTitle = styled.View`
    margin-left: 10px;
 `;
