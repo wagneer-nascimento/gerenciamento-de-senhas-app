@@ -6,12 +6,7 @@ export const Container = styled.SafeAreaView`
    background: ${COLORS.WHITE};
 `;
  
-export const ContainerBanner = styled.View`
-    width: 100%;
-    height: 60px;
-    align-items: center;
-    justify-content: center;
-`;
+
 export const ContainerInput = styled.View`
    padding: 20px;
 `;
