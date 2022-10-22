@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { ActivityIndicator, Alert, ScrollView } from "react-native";
 import { useAuth } from "../../auth/auth";
+import BannerAdmob from "../../components/BannerAdmob";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { deleteUser } from "../../services/user";
 import { COLORS } from "../../theme";
+import { Constants } from "../../utils";
 import {
     Container,
     ContainerButton,
@@ -56,6 +58,8 @@ export default function Person() {
         <ScrollView style={{
             backgroundColor: COLORS.WHITE,
         }}>
+            <BannerAdmob id={Constants.BANNER_PERSON} />
+
             {loading ?
                 <ActivityIndicator size="large" color={COLORS.ORANGE} />
                 :

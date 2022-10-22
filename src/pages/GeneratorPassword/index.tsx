@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Switch, ScrollView, Alert } from "react-native";
+import BannerAdmob from "../../components/BannerAdmob";
 import Button from "../../components/Button";
 import { IconsMaterialCommunityIcons } from "../../components/icons/Icons";
 import LineComponent from "../../components/LineComponent";
@@ -8,6 +9,7 @@ import { copyToClipboard } from "../../libs/functions";
 import { GeneratorSecurePassword } from "../../models/GeneratorPassword";
 import { generatorPassword } from "../../services/account";
 import { COLORS } from "../../theme";
+import { Constants } from "../../utils";
 import {
     ButtonClickIcon,
     Container,
@@ -65,6 +67,8 @@ export default function GeneratorPassword() {
 
     return (
         <Container>
+            <BannerAdmob id={Constants.BANNER_GENERATOR_PASSWORD} />
+
             <ScrollView>
                 <ContainerHeader>
                     <ContainerIcons>
@@ -200,6 +204,7 @@ export default function GeneratorPassword() {
                     >GERAR SENHA</Button>
                 </ContainerButtonGeneratorPassword>
             </ScrollView>
+
         </Container>
     )
 }
