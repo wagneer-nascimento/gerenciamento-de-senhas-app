@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
     ActivityIndicator,
     Alert,
+    Dimensions,
     FlatList,
     RefreshControl,
     TouchableOpacity,
@@ -22,9 +23,20 @@ import {
     ContainerInput,
     Usuario,
     ButtonInput,
-    TextButtonInput
+    TextButtonInput,
+    ContainerBanner
 } from "./styles";
+//import mobileAds from 'react-native-google-mobile-ads';
+import mobileAds, { AppOpenAd, InterstitialAd, RewardedAd, BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 
+/*mobileAds()
+    .initialize()
+    .then(adapterStatuses => {
+        // Initialization complete!
+
+        console.log(adapterStatuses)
+    });
+*/
 export default function Home() {
     const { user } = useAuth();
     const [data, setData] = useState<Account[]>([]);
@@ -33,6 +45,7 @@ export default function Home() {
     const [notData, setNotData] = useState<boolean>(false);
     const [refreshing, setRefreshing] = React.useState(false);
     const navigation = navigationPrivateScreens();
+    const LARGURA_TELA = Dimensions.get('window').width;
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -78,6 +91,11 @@ export default function Home() {
 
     return (
         <Container>
+            <ContainerBanner>
+                <BannerAd
+                    size={BannerAdSize.INLINE_ADAPTIVE_BANNER}
+                    unitId={TestIds.BANNER} />
+            </ContainerBanner>
 
             <ContainerInput>
                 <TouchableOpacity onPress={() => navigation.navigate("SearchByTitleOrDescription")}>

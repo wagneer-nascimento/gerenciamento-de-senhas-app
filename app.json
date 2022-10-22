@@ -1,4 +1,8 @@
 {
   "name": "GerenciamentoDeSenhas",
-  "displayName": "GerenciamentoDeSenhas"
+  "displayName": "GerenciamentoDeSenhas",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4461493057760140~3563868810",
+    "ios_app_id": "ca-app-pub-4461493057760140~3563868810"
+  }
 }
