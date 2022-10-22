@@ -45,7 +45,6 @@ export default function SearchByTitleOrDescription() {
             }
 
         } catch (error: any) {
-            console.log(error)
             Alert.alert("Error", error.response.data.message)
 
         } finally {

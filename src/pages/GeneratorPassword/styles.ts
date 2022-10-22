@@ -65,4 +65,5 @@ export const ContainerBodySwitch = styled.View`
 
 export const ContainerButtonGeneratorPassword = styled.View`
     padding: 20px;
+    margin-bottom: 80px;
 `;

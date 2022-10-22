@@ -56,7 +56,6 @@ export default function GeneratorPassword() {
 
             const response = await generatorPassword(data);
             setSenhaGerada(response.data.senhaGerada)
-            console.log(response.data)
         } catch (error: any) {
             Alert.alert("Error", error.response.data.message);
 

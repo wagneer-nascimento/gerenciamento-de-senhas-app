@@ -15,7 +15,6 @@ export default function BannerAdmob({ id }: Props) {
         .initialize()
         .then(adapterStatuses => {
             // Initialization complete!
-            console.log(adapterStatuses)
         });
     */
     return (

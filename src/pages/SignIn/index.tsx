@@ -46,7 +46,6 @@ export default function SignIn() {
             }).then((response) => {
 
             }).catch((error) => {
-                console.log(error)
                 Alert.alert("error!", "entre em contato com o suporte.")
             })
 
