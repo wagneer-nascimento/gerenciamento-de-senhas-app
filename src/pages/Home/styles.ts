@@ -5,27 +5,32 @@ export const Container = styled.SafeAreaView`
    flex: 1;
    background: ${COLORS.WHITE};
 `;
-export const Content = styled.View`
-   flex: 1;
-   padding: 0 20px;
-`;
-
+ 
 export const ContainerInput = styled.View`
    padding: 20px;
 `;
 
-export const ButtonInput = styled.TouchableHighlight`
+export const ButtonInput = styled.View`
+    width: 100%;
+    height: 56px;
+    border-radius: 10px; 
+    background: ${COLORS.WHITE};
+    padding: 0 10px 0  10px;
+    justify-content: center;
+    border-width: 1px;
+    border-color: ${COLORS.WHITE_OFF};
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
 
-export const ContainerTitle = styled.View`
-   margin-left: 10px;
+export const TextButtonInput = styled.Text`
+    flex: 1;
+    color:${COLORS.GRAY};
+    font-size: 15px; 
+    font-family: ${FONTS.POPPINS_REGULAR};
 `;
-
-export const ContainerTopAuthors = styled.View`
-   padding: 10px;
-   background: ${COLORS.BLACK};
-`;
-
+ 
 export const Title = styled.Text`
     font-family: ${FONTS.ROBOTO_BOLD};
     font-size: 20px;
@@ -49,21 +54,4 @@ export const Card = styled.TouchableOpacity`
 
 export const ContainerCard = styled.View`
    
-`;
-
-export const PositionButtonAddAccount = styled.View`
-    position: absolute;
-    left: 81%; 
-    bottom: 13%;
-`;
-
-export const ContainerButtonAddAccount = styled.TouchableOpacity`
-    height: 60px;
-    width: 60px;
-    border-radius: 50px;
-    border-width: 1px;
-    border-color: ${COLORS.ORANGE};
-    background: ${COLORS.WHITE};
-    align-items: center;
-    justify-content: center;
 `;

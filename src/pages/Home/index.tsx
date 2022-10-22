@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, FlatList, Platform, RefreshControl, Text, View } from "react-native";
-//import Card from "../../components/Card";
-import Input from "../../components/Input";
-//import InputCommentComponent from "../../components/InputCommentComponent";
-//import TopAuthors from "../../components/TopAuthors";
-//import { navigationPrivateScreens } from "../../libs/navigation";
-//import { Historia } from "../../models/Historias";
-//import { listarTodasHistorias, listarTodasHistoriasByTitleDescricao } from "../../services/historias/historia";
+import {
+    ActivityIndicator,
+    Alert,
+    FlatList,
+    RefreshControl,
+    TouchableOpacity,
+    View
+} from "react-native";
 import { COLORS } from "../../theme";
-import { Container, Content, ContainerTopAuthors, Title, ContainerTitle, ContainerCard, Card, ContainerInput, Usuario, ContainerButtonAddAccount, PositionButtonAddAccount, ButtonInput } from "./styles";
-
-//import { updateTokens } from "../../services/tokens/tokens";
 import { useAuth } from "../../auth/auth";
 import LineComponent from "../../components/LineComponent";
-import { IconsAntDesigns } from "../../components/icons/Icons";
 import { navigationPrivateScreens } from "../../libs/navigation";
 import ButtonFab from "../../components/ButtonFab";
 import { Account } from "../../models/Account";
 import { listarTodasContas } from "../../services/account";
+import {
+    Container,
+    Title,
+    ContainerCard,
+    Card,
+    ContainerInput,
+    Usuario,
+    ButtonInput,
+    TextButtonInput
+} from "./styles";
 
 export default function Home() {
     const { user } = useAuth();
-    // const navigation = navigationPrivateScreens();
     const [data, setData] = useState<Account[]>([]);
     const [page, setPage] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
@@ -30,9 +35,13 @@ export default function Home() {
     const navigation = navigationPrivateScreens();
 
     useEffect(() => {
-        loadingAccounts();
+        const unsubscribe = navigation.addListener('focus', () => {
+            loadingAccounts();
+        });
 
-    }, []);
+        return unsubscribe;
+    }, [navigation]);
+
 
     async function loadingAccounts() {
         if (notData) {
@@ -67,18 +76,15 @@ export default function Home() {
         }, 2000);
     }
 
-
     return (
         <Container>
 
             <ContainerInput>
-                <ButtonInput onPress={() => navigation.navigate("SearchByTitleOrDescription")}>
-                    <Input
-                        placeholder="pesquisar"
-                        editable={false}
-                       // onTouchStart={() => navigation.navigate("SearchByTitleOrDescription")}
-                        name="" />
-                </ButtonInput>
+                <TouchableOpacity onPress={() => navigation.navigate("SearchByTitleOrDescription")}>
+                    <ButtonInput>
+                        <TextButtonInput>Pesquisar</TextButtonInput>
+                    </ButtonInput>
+                </TouchableOpacity>
             </ContainerInput>
 
             <FlatList
